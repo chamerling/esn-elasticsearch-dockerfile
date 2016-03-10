@@ -7,12 +7,12 @@ before_install:
   - export BUILD_ID=${TRAVIS_COMMIT::8}
   - export REPO=chamerling/esn-elasticsearch
   - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_TAG ; fi`
-  #- docker build -t $REPO:$BUILD_ID .
+  - docker build -t $REPO:$BUILD_ID .
   - echo $REPO:$BUILD_ID
-  #- docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
   - echo $REPO:$TAG
-  #- docker tag $REPO:$BUILD_ID $REPO:$TAG
-  #- docker push $REPO:$TAG
+  - docker tag $REPO:$BUILD_ID $REPO:$TAG
+  - docker push $REPO:$TAG
 
 script:
   - docker ps
